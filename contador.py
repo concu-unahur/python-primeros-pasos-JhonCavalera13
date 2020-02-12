@@ -1,7 +1,7 @@
 import threading
 import logging
 import time
-
+ 
 logging.basicConfig(format='%(asctime)s.%(msecs)03d [%(threadName)s] - %(message)s', datefmt='%H:%M:%S', level=logging.INFO)
 
 contador = 0

@@ -10,8 +10,8 @@ logging.basicConfig(format='%(asctime)s.%(msecs)03d [%(threadName)s] - %(message
 
 img_urls = [
     'https://images.unsplash.com/photo-1516117172878-fd2c41f4a759',
-    'https://images.unsplash.com/photo-1532009324734-20a7a5813719',
-    'https://images.unsplash.com/photo-1524429656589-6633a470097c',
+    'https://images.unsplash.com/photo-1532009324734-20a7a5813719'
+    """ 'https://images.unsplash.com/photo-1524429656589-6633a470097c',
     'https://images.unsplash.com/photo-1530224264768-7ff8c1789d79',
     'https://images.unsplash.com/photo-1564135624576-c5c88640f235',
     'https://images.unsplash.com/photo-1541698444083-023c97d3f4b6',
@@ -23,10 +23,11 @@ img_urls = [
     'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99',
     'https://images.unsplash.com/photo-1516972810927-80185027ca84',
     'https://images.unsplash.com/photo-1550439062-609e1531270e',
-    'https://images.unsplash.com/photo-1549692520-acc6669e2f0c'
+    'https://images.unsplash.com/photo-1549692520-acc6669e2f0c' """
 ]
 
 def bajar_imagen(img_url):
+    logging.info('bajar_imagen')
     img_bytes = requests.get(img_url).content
     img_name = img_url.split('/')[3]
     img_name = f'{img_name}.jpg'
@@ -40,12 +41,26 @@ tiempo = Contador()
 tiempo.iniciar()
 
 # una por una
-for url in img_urls:
+""" for url in img_urls:
     bajar_imagen(url)
 
 tiempo.finalizar()
-tiempo.imprimir()
+tiempo.imprimir() """
 
 
 
 # Pero ahora con threads
+
+for url in img_urls:
+    t1 = threading.Thread(target=bajar_imagen(url),name='descargando imagen')
+    t1.start()
+    #t1.join()
+
+tiempo.finalizar()
+tiempo.imprimir()
+
+for url in img_urls:
+    logging.info(url)
+
+
+
